@@ -43,7 +43,7 @@ Material:
     m_Floats:
     - OverlayAmount: 0.5
     - _Falloff: 50
-    - _GridScale: 0.5
+    - _GridScale: 1
     - _OverlayAmount: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -51,7 +51,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0.5058824, g: 0.53333336, b: 0.5647059, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &290197145247217562
+--- !u!114 &1981370877696697147
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
