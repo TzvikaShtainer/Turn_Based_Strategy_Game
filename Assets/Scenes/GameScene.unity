@@ -479,6 +479,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95787105524477528, guid: 2f3e27eecb190e44a9af50723c394274, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7520b0d01ff662c4f8d3336ce9482fe5, type: 2}
+    - target: {fileID: 95787105524477528, guid: 2f3e27eecb190e44a9af50723c394274, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 137720934533220950, guid: 2f3e27eecb190e44a9af50723c394274, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -550,7 +558,7 @@ GameObject:
   - component: {fileID: 1709389717}
   - component: {fileID: 1709389716}
   - component: {fileID: 1709389715}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -673,6 +681,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3609d59d0d1aea44e975f23230ff3165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mousePointLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &2122993518
 Transform:
   m_ObjectHideFlags: 0
