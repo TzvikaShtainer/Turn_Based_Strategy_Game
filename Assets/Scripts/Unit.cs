@@ -17,6 +17,10 @@ public class Unit : MonoBehaviour
             Vector3 moveDirection = (targetPosition - transform.position).normalized;
             float moveSpeed = 4f;
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
+
+            float rotateSpeed = 10f;
+            //transform.forward = moveDirection; Works Fine but the movement sharp and not smooth
+            transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
             
             unitAnim.SetBool("IsWalking", true);
         }
