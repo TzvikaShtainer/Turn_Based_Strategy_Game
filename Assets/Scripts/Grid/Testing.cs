@@ -9,9 +9,6 @@ public class Testing : MonoBehaviour
     private GridSystem _gridSystem;
     private void Start()
     {
-        _gridSystem = new GridSystem(10, 10, 2f);
-        _gridSystem.CreateDebugObject(gridDebugObjectPrefabs);
-        
         Debug.Log(new GridPosition(5, 7));
     }
 
