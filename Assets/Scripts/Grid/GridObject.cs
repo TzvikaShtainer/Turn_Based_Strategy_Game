@@ -41,8 +41,8 @@ public class GridObject
         return unitList;
     }
 
-    // public GridPosition GetGridPosition()
-    // {
-    //     return gridPosition;
-    // }
+    public bool HasAnyUnit()
+    {
+        return unitList.Count > 0;
+    }
 }
