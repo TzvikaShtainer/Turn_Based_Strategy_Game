@@ -53,11 +53,14 @@ public class UnitActionSystem : MonoBehaviour
         {
             GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
 
-            if (selectedAction.IsValidActionGridPosition(mouseGridPosition))
-            {
-                SetBusy();
-                selectedAction.TakeAction(mouseGridPosition, ClearBusy);
-            }
+            if (!selectedAction.IsValidActionGridPosition(mouseGridPosition))
+                return;
+            
+            if (!selectedUnit.TrySpendActionPointsToTakeAction(selectedAction))
+                return;
+            
+            SetBusy();
+            selectedAction.TakeAction(mouseGridPosition, ClearBusy);
         }
     }
 
