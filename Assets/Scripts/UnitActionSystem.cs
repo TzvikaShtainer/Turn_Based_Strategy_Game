@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UnitActionSystem : MonoBehaviour
@@ -32,6 +33,9 @@ public class UnitActionSystem : MonoBehaviour
     private void Update()
     {
         if(isBusy)
+            return;
+        
+        if(EventSystem.current.IsPointerOverGameObject()) //if the mouse is on UI element
             return;
         
         if (TryHandleUnitSelection()) 
@@ -97,6 +101,9 @@ public class UnitActionSystem : MonoBehaviour
             {
                 if (raycastHit.transform.TryGetComponent(out Unit unit))
                 {
+                    if (unit == selectedUnit)
+                        return false;
+                    
                     SetSelectedUnit(unit);
                     return true;
                 }
@@ -122,5 +129,10 @@ public class UnitActionSystem : MonoBehaviour
     public Unit GetSelectedUnit()
     {
         return selectedUnit;
+    }
+
+    public BaseAction GetSelectedAction()
+    {
+        return selectedAction;
     }
 }
