@@ -41,29 +41,43 @@ public class UnitActionSystem : MonoBehaviour
 
     }
 
-    public void HandleSelectedAction() //one way - no abstract func so we need to handle every case bec we need diff prams for the actions
+    private void HandleSelectedAction()
     {
         if (Input.GetMouseButtonDown(0))
         {
             GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
-            
-            switch (selectedAction)
+
+            if (selectedAction.IsValidActionGridPosition(mouseGridPosition))
             {
-                case MoveAction moveAction:
-                    if (moveAction.IsValidActionGridPosition(mouseGridPosition))
-                    {
-                        SetBusy();
-                        moveAction.Move(mouseGridPosition, ClearBusy);
-                    }
-                    break;
-                
-                case SpinAction spinAction:
-                    SetBusy();
-                    spinAction.Spin(ClearBusy);
-                    break;
+                SetBusy();
+                selectedAction.TakeAction(mouseGridPosition, ClearBusy);
             }
         }
     }
+
+    // public void HandleSelectedAction() //one way - no abstract func so we need to handle every case bec we need diff prams for the actions
+    // {
+    //     if (Input.GetMouseButtonDown(0))
+    //     {
+    //         GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
+    //         
+    //         switch (selectedAction)
+    //         {
+    //             case MoveAction moveAction:
+    //                 if (moveAction.IsValidActionGridPosition(mouseGridPosition))
+    //                 {
+    //                     SetBusy();
+    //                     moveAction.Move(mouseGridPosition, ClearBusy);
+    //                 }
+    //                 break;
+    //             
+    //             case SpinAction spinAction:
+    //                 SetBusy();
+    //                 spinAction.Spin(ClearBusy);
+    //                 break;
+    //         }
+    //     }
+    // }
     
     private void SetBusy()
     {
