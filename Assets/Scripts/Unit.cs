@@ -13,6 +13,7 @@ public class Unit : MonoBehaviour
     private GridPosition gridPosition;
     private MoveAction moveAction;
     private SpinAction spinAction;
+    private ShootAction shootAction;
     private BaseAction[] baseActionsArray;
     private int actionsPoints = ACTION_POINTS_MAX;
 
@@ -20,6 +21,7 @@ public class Unit : MonoBehaviour
     {
         moveAction = GetComponent<MoveAction>();
         spinAction = GetComponent<SpinAction>();
+        shootAction = GetComponent<ShootAction>();
         baseActionsArray = GetComponents<BaseAction>();
     }
 
@@ -54,6 +56,11 @@ public class Unit : MonoBehaviour
     public GridPosition GetGridPosition()
     {
         return gridPosition;
+    }
+
+    public Vector3 GetWorldPosition()
+    {
+        return transform.position;
     }
     
     public BaseAction[] GetBaseActionsArray()
@@ -107,5 +114,10 @@ public class Unit : MonoBehaviour
     public bool IsEnemy()
     {
         return isEnemy;
+    }
+
+    public void Damage()
+    {
+        Debug.Log(transform + "shooted");
     }
 }

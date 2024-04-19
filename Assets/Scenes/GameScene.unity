@@ -796,6 +796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnNumberText: {fileID: 1381388842}
   endTurnBtn: {fileID: 619440885}
+  enemyTurnVisualGameObject: {fileID: 935940747}
 --- !u!1001 &749322079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -804,6 +805,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1402921101895719027, guid: 0cad13045ca97654c81f0c20d15cbcdf, type: 3}
+      propertyPath: maxShootDistance
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3813032577342171168, guid: 0cad13045ca97654c81f0c20d15cbcdf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.95
@@ -2459,6 +2464,52 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2803748520826767335, guid: 3cd66f5596f889f499ed2402c99f16e2, type: 3}
   m_PrefabInstance: {fileID: 1343987071}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1689338659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1689338661}
+  - component: {fileID: 1689338660}
+  m_Layer: 0
+  m_Name: EnemyAI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1689338660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689338659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e77a02f7f23f8e419fa233159d17257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dur: 1
+  timer: 0
+--- !u!4 &1689338661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689338659}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 413.5, y: 232.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1701467410
 GameObject:
   m_ObjectHideFlags: 0
@@ -2867,6 +2918,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1402921101895719027, guid: 0cad13045ca97654c81f0c20d15cbcdf, type: 3}
+      propertyPath: maxShootDistance
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3813032577342171168, guid: 0cad13045ca97654c81f0c20d15cbcdf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2941,3 +2996,4 @@ SceneRoots:
   - {fileID: 1533167987}
   - {fileID: 361933078}
   - {fileID: 639936515}
+  - {fileID: 1689338661}
