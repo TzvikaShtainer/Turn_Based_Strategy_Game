@@ -31,9 +31,9 @@ public class ShootAction : BaseAction
         switch (state)
         {
             case State.Aiming:
-                Vector3 aimDirection = (targetUnit.GetWorldPosition() - unit.GetWorldPosition()).normalized;
+                Vector3 aimDir = (targetUnit.GetWorldPosition() - unit.GetWorldPosition()).normalized;
                 float rotateSpeed = 10f;
-                transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * rotateSpeed);
+                transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * rotateSpeed);
                 break;
             
             case State.Shooting:

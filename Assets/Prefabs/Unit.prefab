@@ -182,7 +182,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1753616c786c574b997b024ed12aebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitAnim: {fileID: 6320498089589648446}
   maxMoveDistance: 4
 --- !u!114 &2678257559002986982
 MonoBehaviour:
