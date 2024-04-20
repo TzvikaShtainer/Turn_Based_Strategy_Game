@@ -1,12 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class UnitAnimator : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-
+    [SerializeField] private Transform bulletPrefab;
+    [SerializeField] private Transform shootPointTransform;
+    
     private void Awake()
     {
         if (TryGetComponent<MoveAction>(out MoveAction moveAction))
@@ -31,8 +34,19 @@ public class UnitAnimator : MonoBehaviour
         animator.SetBool("IsWalking", false);
     }
     
-    private void ShootAction_OnShoot(object sender, EventArgs e)
+    private void ShootAction_OnShoot(object sender, ShootAction.OnShootEventArgs e)
     {
         animator.SetTrigger("Shoot");
+
+        Transform bulletProjectileTransform = 
+            Instantiate(bulletPrefab, shootPointTransform.position, quaternion.identity);
+        
+        BulletProjectile bulletProjectile = bulletProjectileTransform.GetComponent<BulletProjectile>();
+
+        Vector3 targetUnitShootAtPosition = e.targetUnit.GetWorldPosition();
+
+        targetUnitShootAtPosition.y = shootPointTransform.position.y; //make the sane height as the gun point 
+        
+        bulletProjectile.Setup(targetUnitShootAtPosition);
     }
 }

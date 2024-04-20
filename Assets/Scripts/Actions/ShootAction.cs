@@ -12,8 +12,15 @@ public class ShootAction : BaseAction
         Cooloff,
     }
 
-    public event EventHandler OnShoot;
+    public event EventHandler<OnShootEventArgs> OnShoot; //can do this: public event EventHandler<Unit> OnShoot
     
+    //but we choose to learn something else:
+    public class OnShootEventArgs : EventArgs
+    {
+        public Unit targetUnit;
+        public Unit shootingUnit;
+    }
+        
     [SerializeField] private int maxShootDistance = 7;
 
     private State state;
@@ -56,7 +63,11 @@ public class ShootAction : BaseAction
 
     private void Shoot()
     {
-        OnShoot?.Invoke(this, EventArgs.Empty);
+        OnShoot?.Invoke(this, new OnShootEventArgs
+        {
+            targetUnit =  targetUnit,
+            shootingUnit = unit
+        });
         
         targetUnit.Damage();
     }
