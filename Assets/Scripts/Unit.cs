@@ -69,6 +69,11 @@ public class Unit : MonoBehaviour
     {
         return spinAction;
     }
+    
+    public ShootAction GetShootAction()
+    {
+        return shootAction;
+    } 
 
     public GridPosition GetGridPosition()
     {
@@ -145,5 +150,10 @@ public class Unit : MonoBehaviour
         Destroy(gameObject);
         
         OnAnyUnitDead?.Invoke(this, EventArgs.Empty);
+    }
+
+    public float GetHealthNormalized()
+    {
+        return healthSystem.GetHealthNormalized();
     }
 }
