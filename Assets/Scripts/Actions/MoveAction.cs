@@ -10,20 +10,26 @@ public class MoveAction : BaseAction
     
     [SerializeField] private int maxMoveDistance = 4;
     
-    private Vector3 targetPosition;
+    private List<Vector3> positionList;
+    private int currentPositionIndex;
 
     protected override void Awake()
     {
         base.Awake();
-        targetPosition = transform.position;
+        //targetPosition = transform.position;
     }
 
     private void Update()
     {
         if(!isActive)
             return;
-        
+
+        Vector3 targetPosition = positionList[currentPositionIndex];
         Vector3 moveDirection = (targetPosition - transform.position).normalized;
+        
+        float rotateSpeed = 10f;
+        //transform.forward = moveDirection; Works Fine but the movement sharp and not smooth
+        transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
         
         float stoppingDistance = 0.1f;
         if ( Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
@@ -33,19 +39,31 @@ public class MoveAction : BaseAction
         }
         else
         {
-            OnStopMoving?.Invoke(this, EventArgs.Empty); 
+            currentPositionIndex++;
             
-            ActionComplete();
+            if(currentPositionIndex >= positionList.Count)
+            {
+                OnStopMoving?.Invoke(this, EventArgs.Empty); 
+            
+                ActionComplete();
+            }
+            
+            
         }
-        
-        float rotateSpeed = 10f;
-        //transform.forward = moveDirection; Works Fine but the movement sharp and not smooth
-        transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
     }
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        this.targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
+        List<GridPosition> pathGridPositionList = Pathfinding.Instance.FindPath(unit.GetGridPosition(), gridPosition, out int pathLength);
+        
+        currentPositionIndex = 0;
+        
+        positionList = new List<Vector3>();
+
+        foreach (GridPosition pathGridPosition in pathGridPositionList)
+        {
+            positionList.Add(LevelGrid.Instance.GetWorldPosition(pathGridPosition));
+        }
         
         OnStartMoving?.Invoke(this, EventArgs.Empty); 
         
@@ -72,6 +90,17 @@ public class MoveAction : BaseAction
                     continue;
 
                 if (LevelGrid.Instance.HasAnyUnitOnGridPosition(testGridPosition)) //gris pos already occupied with another unit
+                    continue;
+
+                if (!Pathfinding.Instance.IsWalkableGridPosition(testGridPosition))
+                    continue;
+                
+                if(!Pathfinding.Instance.HasPath(unit.GetGridPosition(), testGridPosition))
+                    continue;
+
+                int pathfindingDistanceMultiplier = 10;
+                if (Pathfinding.Instance.GetPathLength(unit.GetGridPosition(), testGridPosition) >
+                    maxMoveDistance * pathfindingDistanceMultiplier)
                     continue;
                 
                 validGridPositionList.Add(testGridPosition);
