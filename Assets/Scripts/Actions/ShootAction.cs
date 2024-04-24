@@ -22,7 +22,8 @@ public class ShootAction : BaseAction
     }
         
     [SerializeField] private int maxShootDistance = 7;
-
+    [SerializeField] private LayerMask obstacleLayerMask;
+    
     private State state;
     private float stateTimer;
     private Unit targetUnit;
@@ -119,7 +120,7 @@ public class ShootAction : BaseAction
         return GetValidActionGridPositionList(unitGridPosition);
     }
 
-    public List<GridPosition> GetValidActionGridPositionList(GridPosition gridPosition)
+    public List<GridPosition> GetValidActionGridPositionList(GridPosition unitGridPosition)
     {
         List<GridPosition> validGridPositionList = new List<GridPosition>();
         
@@ -128,7 +129,7 @@ public class ShootAction : BaseAction
             for (int z = -maxShootDistance; z <= maxShootDistance; z++)
             {
                 GridPosition offsetGridPosition = new GridPosition(x, z);
-                GridPosition testGridPosition = gridPosition + offsetGridPosition;
+                GridPosition testGridPosition = unitGridPosition + offsetGridPosition;
 
                 if(!LevelGrid.Instance.IsValidGridPosition(testGridPosition))
                     continue;
@@ -146,6 +147,15 @@ public class ShootAction : BaseAction
                 Unit targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(testGridPosition);
                 
                 if(targetUnit.IsEnemy() == unit.IsEnemy()) //both units on same team
+                    continue;
+
+                Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPosition(unitGridPosition);
+                Vector3 shootDir = (targetUnit.GetWorldPosition() - unitWorldPosition).normalized;
+                float unitShoulderHeight = 1.7f;
+                
+                //check for obstacle in the way of shooting
+                if (Physics.Raycast(unitWorldPosition + Vector3.up * unitShoulderHeight, 
+                    shootDir,  Vector3.Distance( unitWorldPosition, targetUnit.GetWorldPosition()), obstacleLayerMask)) 
                     continue;
                 
                 
