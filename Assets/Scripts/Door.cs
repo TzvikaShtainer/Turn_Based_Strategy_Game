@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, IInteractable
 {
-    [SerializeField] private bool isOpen;
+    [SerializeField] private bool isOpen = true;
     [SerializeField] private Animator doorAnim;
     private GridPosition _gridPosition;
     private Action onInteractComplete;
@@ -21,7 +21,7 @@ public class Door : MonoBehaviour
     private void Start()
     {
         _gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
-        LevelGrid.Instance.SetDoorAtGridPosition(_gridPosition, this);
+        LevelGrid.Instance.SetInteractableAtGridPosition(_gridPosition, this);
 
         if (isOpen)
             Open();
