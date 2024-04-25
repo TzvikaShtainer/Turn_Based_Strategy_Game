@@ -6,7 +6,8 @@ public class GridObject
 {
     private GridSystem<GridObject> gridSystem;
     private GridPosition gridPosition;
-
+    private Door door;  
+    
     private List<Unit> unitList;
 
     public GridObject(GridSystem<GridObject> gridSystem, GridPosition gridPosition)
@@ -52,5 +53,15 @@ public class GridObject
             return unitList[0];
         else
             return null;
+    }
+
+    public void SetDoor(Door door)
+    {
+        this.door = door;
+    }
+
+    public Door GetDoor()
+    {
+        return door;
     }
 }
