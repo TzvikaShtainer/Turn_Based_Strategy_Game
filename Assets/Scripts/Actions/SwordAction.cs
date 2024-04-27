@@ -59,7 +59,7 @@ public class SwordAction : BaseAction
                 state = State.SwingingSwordAfterHit;
                 float afterHitStateTime = 0.5f;
                 stateTimer = afterHitStateTime;
-                targetUnit.Damage(90);
+                targetUnit.Damage(100);
                 OnAnySwordSlash?.Invoke(this, EventArgs.Empty); 
                 break;
             

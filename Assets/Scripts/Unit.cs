@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    private const int ACTION_POINTS_MAX = 9;
+    private const int ACTION_POINTS_MAX = 4;
 
     
     [SerializeField] private bool isEnemy;

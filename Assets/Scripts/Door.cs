@@ -1,12 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using UnityEngine;
 
 public class Door : MonoBehaviour, IInteractable
 {
+    public static event EventHandler OnAnyDoorOpened;
+    public  event EventHandler OnDoorOpened;
+    
     [SerializeField] private bool isOpen = true;
-    [SerializeField] private Animator doorAnim;
+    
+    private Animator doorAnim;
     private GridPosition _gridPosition;
     private Action onInteractComplete;
     private bool isActive;
@@ -60,6 +65,10 @@ public class Door : MonoBehaviour, IInteractable
         isOpen = true;
         doorAnim.SetBool("IsOpen", isOpen);
         Pathfinding.Instance.SetWalkableGridPosition(_gridPosition, true);
+        
+        OnDoorOpened?.Invoke(this, EventArgs.Empty);
+        
+        OnAnyDoorOpened?.Invoke(this, EventArgs.Empty);
     }
     
     public void Close()

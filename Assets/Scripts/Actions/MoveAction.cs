@@ -27,7 +27,7 @@ public class MoveAction : BaseAction
         Vector3 targetPosition = positionList[currentPositionIndex];
         Vector3 moveDirection = (targetPosition - transform.position).normalized;
         
-        float rotateSpeed = 10f;
+        float rotateSpeed = 50f;
         //transform.forward = moveDirection; Works Fine but the movement sharp and not smooth
         transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
         
