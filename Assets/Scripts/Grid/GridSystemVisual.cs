@@ -20,7 +20,9 @@ public class GridSystemVisual : MonoBehaviour
         Blue,
         Red,
         RedSoft,
-        Yellow
+        Yellow,
+        Green,
+        GreenSoft
     }
     
     [SerializeField] private Transform gridSystemVisualSinglePrefab;
@@ -108,7 +110,7 @@ public class GridSystemVisual : MonoBehaviour
                 if(!LevelGrid.Instance.IsValidGridPosition(testGridPosition))
                     continue;
                 
-                int testDistance = Mathf.Abs(x) + Mathf.Abs(z); //logic for the range of shooting
+                int testDistance = Mathf.Abs(x) + Mathf.Abs(z); //logic for the range
                 if(testDistance > range)
                     continue;
                 
@@ -165,6 +167,12 @@ public class GridSystemVisual : MonoBehaviour
             
             case InteractAction interactAction:
                 gridVisualType = GridVisualType.Blue;
+                break;
+            
+            case HealAction healAction:
+                gridVisualType = GridVisualType.GreenSoft;
+                
+                ShowGridPositionRange(selectedUnit.GetGridPosition(), healAction.GetMaxHealDistance(), GridVisualType.Green);
                 break;
         }
         

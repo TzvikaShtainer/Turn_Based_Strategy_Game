@@ -113,7 +113,7 @@ public class SwordAction : BaseAction
                 if(targetUnit.IsEnemy() == unit.IsEnemy()) //both units on same team
                     continue;
 
-
+                
                 // validGridPositionList.Add(testGridPosition); //only to see all the cells of our range
 
                 validGridPositionList.Add(testGridPosition);

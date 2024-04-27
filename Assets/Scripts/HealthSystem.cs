@@ -43,4 +43,16 @@ public class HealthSystem : MonoBehaviour
     {
         return (float)health / healthMax;
     }
+
+    public void IncreaseHealth(int healthAmount)
+    {
+        health += healthAmount;
+
+        if (health > healthMax)
+        {
+            health = healthMax;
+        }
+        
+        OnDamaged?.Invoke(this, EventArgs.Empty);
+    }
 }

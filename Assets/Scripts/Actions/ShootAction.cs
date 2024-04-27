@@ -24,11 +24,13 @@ public class ShootAction : BaseAction
         
     [SerializeField] private int maxShootDistance = 7;
     [SerializeField] private LayerMask obstacleLayerMask;
+    [SerializeField] private int shootDamage = 40;
     
     private State state;
     private float stateTimer;
     private Unit targetUnit;
     private bool canShootBullet;
+    
     
     private void Update()
     {
@@ -77,7 +79,7 @@ public class ShootAction : BaseAction
             shootingUnit = unit
         });
         
-        targetUnit.Damage(40);
+        targetUnit.Damage(shootDamage);
     }
 
     private void NextState()
