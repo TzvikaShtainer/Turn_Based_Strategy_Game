@@ -10,13 +10,15 @@ public class InGameMenuUI : MonoBehaviour
     [SerializeField] private Button resumeBtn;
     [SerializeField] private Button restartBtn;
     [SerializeField] private Button mainMenuBtn;
+
+    [SerializeField] private LevelManager levelManager;
     
     
     private void Start()
     {
         resumeBtn.onClick.AddListener(ResumeGame);
         restartBtn.onClick.AddListener(RestartGame);
-        mainMenuBtn.onClick.AddListener(ReturnToMainMenu);
+        mainMenuBtn.onClick.AddListener(GoToMainMenu);
     }
 
     private void ResumeGame()
@@ -27,11 +29,11 @@ public class InGameMenuUI : MonoBehaviour
     
     private void RestartGame()
     {
-        Debug.Log("RestartGame");
+        levelManager.RestartCurrentLevel();
     }
 
-    private void ReturnToMainMenu()
+    private void GoToMainMenu()
     {
-        Debug.Log("ReturnToMainMenu");
+        levelManager.GoToMainMenu();
     }
 }
