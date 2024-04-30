@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82096b7633a61144882a8d3f0fb4bcb5, type: 3}
+  m_Name: UIAudioPlayer
+  m_EditorClassIdentifier: 
+  clickAudionClip: {fileID: 8300000, guid: 495464a2c6ccb6b42be97e08eaf5c3d9, type: 3}
+  commitAudionClip: {fileID: 8300000, guid: 31498b6adec9831438adc6797fc2b079, type: 3}
+  selectAudionClip: {fileID: 8300000, guid: c37c1e9adbf71ab498090eb4155001f2, type: 3}
