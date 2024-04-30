@@ -730,6 +730,7 @@ MonoBehaviour:
   obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  shootDamage: 40
 --- !u!114 &30604451934143323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -761,6 +762,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 100
   health: 100
+  hitAudio: {fileID: 8300000, guid: d248460e780559844850b6686137a45d, type: 3}
+  deathAudio: {fileID: 8300000, guid: 714ece94bbd647c459eed313ee6837ba, type: 3}
+  volume: 1
 --- !u!114 &4987732667417596721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,6 +818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2464669a2da099942b4d9713326ff615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxInteractDistance: 1
 --- !u!1 &8827236417631249817
 GameObject:
   m_ObjectHideFlags: 0

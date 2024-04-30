@@ -11,6 +11,11 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private int healthMax = 100;
     [SerializeField] private int health;
 
+    [Header("Audio")] 
+    [SerializeField] private AudioClip hitAudio;
+    [SerializeField] private AudioClip deathAudio;
+    [SerializeField] private float volume = 1;
+
 
     private void Awake()
     {
@@ -28,6 +33,9 @@ public class HealthSystem : MonoBehaviour
         
         OnDamaged?.Invoke(this, EventArgs.Empty);
 
+        Vector3 loc = transform.position;
+        GamePlayStatics.PlayAudioAtLoc(hitAudio, loc, volume);
+
         if (health == 0)
         {
             Die();
@@ -37,6 +45,9 @@ public class HealthSystem : MonoBehaviour
     private void Die()
     {
         OnDead?.Invoke(this, EventArgs.Empty);
+        
+        Vector3 loc = transform.position;
+        GamePlayStatics.PlayAudioAtLoc(deathAudio, loc, volume);
     }
 
     public float GetHealthNormalized()
